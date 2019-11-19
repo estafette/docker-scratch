@@ -1,0 +1,28 @@
+builder:
+  track: dev
+
+labels:
+  app-group: estafette-various
+  team: estafette-team
+  language: docker
+
+stages:
+  bake:
+    image: extensions/docker:dev
+    action: build
+    inline: |
+      FROM scratch
+    no-cache: true
+    container: scratch
+    repositories:
+    - estafette
+
+  push-to-docker-hub:
+    image: extensions/docker:dev
+    action: push
+    container: scratch
+    pushVersionTag: false
+    repositories:
+    - estafette
+    tags:
+    - latest
