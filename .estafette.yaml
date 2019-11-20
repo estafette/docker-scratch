@@ -12,6 +12,9 @@ stages:
     action: build
     inline: |
       FROM scratch
+
+      LABEL maintainer="estafette.io" \
+            description="A runnable version of Docker's scratch container"
     no-cache: true
     container: scratch
     repositories:
